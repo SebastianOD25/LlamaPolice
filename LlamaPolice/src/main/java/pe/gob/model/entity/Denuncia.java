@@ -17,7 +17,7 @@ public class Denuncia {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Denuncia denuncia_id;
+	private Long denuncia_id;
 	
 	@ManyToOne
 	@JoinColumn(name="nombe", nullable=false)
@@ -40,11 +40,11 @@ public class Denuncia {
 	@Column(name="Descripcion_del_crimen", nullable = false)
 	private Long descripcion;
 
-	public Denuncia getDenuncia_id() {
+	public Long getDenuncia_id() {
 		return denuncia_id;
 	}
 
-	public void setDenuncia_id(Denuncia denuncia_id) {
+	public void setDenuncia_id(Long denuncia_id) {
 		this.denuncia_id = denuncia_id;
 	}
 
