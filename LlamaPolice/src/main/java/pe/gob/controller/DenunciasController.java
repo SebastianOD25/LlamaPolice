@@ -9,6 +9,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.event.SelectEvent;
+
 import pe.gob.business.ComisariaBusiness;
 import pe.gob.business.DelitosBusiness;
 import pe.gob.business.DenunciaBusiness;
@@ -18,6 +20,7 @@ import pe.gob.model.entity.Delitos;
 import pe.gob.model.entity.Denuncia;
 import pe.gob.model.entity.Personas;
 import pe.gob.util.Message;
+
 
 @Named
 @SessionScoped
@@ -93,49 +96,134 @@ public class DenunciasController implements Serializable{
 	public String guardarDenuncia() {
 		String view = "";
 		try {
-			
+			if(denuncia.getDenuncia_id() != null) {
+				denuncia.setPersona(persona);
+				denuncia.setDelitos(delitos);
+				denuncia.setComisaria(comisaria);
+				denunciaB.update(denuncia);
+				Message.messageInfo("Registro Actualizado Correctamente");
+			}else {
+				denuncia.setPersona(persona);
+				denuncia.setDelitos(delitos);
+				denuncia.setComisaria(comisaria);
+				denunciaB.insertar(denuncia);
+				Message.messageInfo("Registro Insertado Correctamente");
+			}
+			this.getDenunciasT();
+			//resetForm();
+			view = "listar";
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 		}
+		return view;
 	}
 	
+	public String BorrarD() {
+		String view = "";
+		try {
+			this.denuncia = denunciaS;
+			denunciaB.delete(denuncia);
+			Message.messageInfo("Denuncia Eliminada Correctamente");
+			view = "listar";
+		} catch (Exception ex) {
+			Message.messageError("Error en Denuncia: " + ex.getMessage());
+		}
+		return view;
+	}
 	
+	public void resetForm() {
+		this.filtroD = "";
+		this.denuncia = new Denuncia();
+	}
 	
+	public void BuscarDenunciaPorDelito() {
+		try {
+			denun = denunciaB.EncontrarD(this.filtroD.trim());
+			resetForm();
+			if (denun.isEmpty()) {
+				Message.messageInfo("No se encontraron denuncias");
+			}
+		}
+		catch(Exception ex) {
+			Message.messageError("Error al buscar Producto: " + ex.getMessage());
+		}		
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public void SeleccionaDenuncia(SelectEvent e) {
+		this.denunciaS = (Denuncia)e.getObject();
+	}
+
+	public Denuncia getDenuncia() {
+		return denuncia;
+	}
+
+	public void setDenuncia(Denuncia denuncia) {
+		this.denuncia = denuncia;
+	}
+
+	public List<Denuncia> getDenun() {
+		return denun;
+	}
+
+	public void setDenun(List<Denuncia> denun) {
+		this.denun = denun;
+	}
+
+	public Personas getPersona() {
+		return persona;
+	}
+
+	public void setPersona(Personas persona) {
+		this.persona = persona;
+	}
+
+	public List<Personas> getPers() {
+		return pers;
+	}
+
+	public void setPers(List<Personas> pers) {
+		this.pers = pers;
+	}
+
+	public Comisaria getComisaria() {
+		return comisaria;
+	}
+
+	public void setComisaria(Comisaria comisaria) {
+		this.comisaria = comisaria;
+	}
+
+	public List<Comisaria> getComi() {
+		return comi;
+	}
+
+	public void setComi(List<Comisaria> comi) {
+		this.comi = comi;
+	}
+
+	public Delitos getDelitos() {
+		return delitos;
+	}
+
+	public void setDelitos(Delitos delitos) {
+		this.delitos = delitos;
+	}
+
+	public List<Delitos> getDeli() {
+		return deli;
+	}
+
+	public void setDeli(List<Delitos> deli) {
+		this.deli = deli;
+	}
+
+	public String getFiltroD() {
+		return filtroD;
+	}
+
+	public void setFiltroD(String filtroD) {
+		this.filtroD = filtroD;
+	}
 	
 	
 }
