@@ -19,7 +19,7 @@ public class Delito implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idDelito;
 
-	@Column(name = "descripcion",nullable = false,length = 30)
+	@Column(name = "denominacion",nullable = false,length = 30)
 	private String descripcion;
 	
 	@Column(name = "explicacion",nullable = false,length = 60)

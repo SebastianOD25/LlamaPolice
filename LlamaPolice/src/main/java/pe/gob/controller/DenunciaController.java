@@ -66,7 +66,7 @@ public class DenunciaController implements Serializable{
 	
 	public String nuevaDenuncia() {
 		this.setDenuncia(new Denuncia());
-		return "denuncia.xhtml";
+		return "listarDenuncia.xhtml";
 	}
 	
 	public void insertar() {

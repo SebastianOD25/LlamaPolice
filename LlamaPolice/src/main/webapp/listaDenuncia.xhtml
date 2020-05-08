@@ -21,23 +21,20 @@
 
 		<h:form>
 			<div class="row">
-
 				<div class="col-sm-8 text-right">
 					<div class="form-group box-main-btn">
-						<span style="display: block; height: 30px;"></span>
-						<p:commandButton value="Denunciar"
-							action="#{denunciaController.nuevaDenuncia()}"
-							styleClass="btn btn-primary" ajax="false" />
+						<p:commandButton value="Registrar"
+							 styleClass="btn btn-primary"
+							ajax="false" action="denuncia?faces-redirect=true"/>
 					</div>
 				</div>
-
 			</div>
 
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="form-group table-responsive box-table-class">
 						<p:dataTable id="lstDenuncia" var="den"
-							value="#{denunciaController.listaDenuncia}" paginator="true"
+							value="#{denunciaController.listDenuncia}" paginator="true"
 							paginatorPosition="top" rowsPerPageTemplate="10,20,30,40,50"
 							rows="10" styleClass="table table-bordered"
 							emptyMessage="No existen denuncias" rowIndexVar="item"

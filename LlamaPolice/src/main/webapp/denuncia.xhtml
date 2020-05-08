@@ -24,14 +24,14 @@
 			<p:selectOneMenu id="cboUsuario" value="#{denunciaController.denuncia.persona}"
 				converter="omnifaces.SelectItemsConverter">
 				<f:selectItems value="#{denunciaController.listPersona}" var="p" 
-					itemLabel="#{p.nombrePersona}" itemValue="#{p}" />
+					itemLabel="#{p.nombrePersona}" itemValue="#{p}" required="true" />
 			</p:selectOneMenu>
 			
 			<p:outputLabel for="cboDelito" value="Delito" />
 			<p:selectOneMenu id="cboDelito" value="#{denunciaController.denuncia.delito}"
 				converter="omnifaces.SelectItemsConverter">
 				<f:selectItems value="#{denunciaController.listDelito}" var="d"
-					itemLabel="#{d.descripcion}" itemValue="#{d}" />
+					itemLabel="#{d.descripcion}" itemValue="#{d}" required="true" />
 			</p:selectOneMenu>
 			
 			<h:outputLabel for="Lugar" value="Lugar "
@@ -47,7 +47,7 @@
 			<p:selectOneMenu id="cboComisaria" value="#{denunciaController.denuncia.comisaria}"
 				converter="omnifaces.SelectItemsConverter">
 				<f:selectItems value="#{denunciaController.listComisaria}" var="c"
-					itemLabel="#{c.nombreComisaria}" itemValue="#{c}" />
+					itemLabel="#{c.nombreComisaria}" itemValue="#{c}" required="true" />
 			</p:selectOneMenu>
 			
 			
