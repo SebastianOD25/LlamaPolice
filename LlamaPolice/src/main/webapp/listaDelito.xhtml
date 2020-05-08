@@ -10,11 +10,11 @@
 
 
 	<ui:define name="title">
-        -- Comisarias --
+        -- Delitos --
     </ui:define>
 
 	<ui:define name="titleCont">
-		<span>Comisarias </span>
+		<span>Delitos </span>
 	</ui:define>
 
 	<ui:define name="content">
@@ -27,29 +27,25 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="form-group table-responsive box-table-class">
-						<p:dataTable id="lstComisaria" var="com"
-							value="#{comisariaController.listacoComisarias}" paginator="true"
+						<p:dataTable id="lstDelitos" var="del"
+							value="#{delitoController.delito}" paginator="true"
 							paginatorPosition="top" rowsPerPageTemplate="10,20,30,40,50"
 							rows="10" styleClass="table table-bordered"
-							emptyMessage="No existen comisarias" rowIndexVar="item"
+							emptyMessage="No existen delitos aun" rowIndexVar="item"
 							style="margin-bottom:0">
 
-							<p:column headerText="Id" sortBy="#{com.idComisaria}">
-								<h:outputText value="#{com.idComisaria}" />
+							<p:column headerText="Id" sortBy="#{del.idDelito}">
+								<h:outputText value=""#{del.idDelito}"" />
 							</p:column>
 
-							<p:column headerText="Nombre de Comisaria" sortBy="#{com.nombreComisaria}">
-								<h:outputText value="#{com.nombreComisaria}" />
+							<p:column headerText="Descripcion" sortBy="#{del.descripcion}">
+								<h:outputText value="#{del.descripcion}" />
 							</p:column>
-							<p:column headerText="Direccion" sortBy="#{com.direccion}">
-								<h:outputText value="#{com.direccion}" />
+							<p:column headerText="Explicacion" sortBy="#{del.explicacion}">
+								<h:outputText value="#{del.explicacion}" />
 							</p:column>
-							<p:column headerText="Cantidad de policias" sortBy="#{com.numP}">
-								<h:outputText value="#{com.numP}" />
-							</p:column>
+
 							
-
-
 						</p:dataTable>
 					</div>
 
