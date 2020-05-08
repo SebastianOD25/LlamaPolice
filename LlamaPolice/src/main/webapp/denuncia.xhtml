@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+	<ui:define name="title">
+        -- Denunciar --
+    </ui:define>
+	<ui:define name="titleCont">
+		<span>Denuncia</span>
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="idDenuncia" value="Id " styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="idDenuncia" styleClass="form-control"
+				value="#{denunciaController.denuncia.idDenuncia}" required="true" />
+				
+				<p:outputLabel for="cboUsuario" value="Persona" />
+			<p:selectOneMenu id="cboUsuario" value="#{denunciaController.denuncia.persona}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{denunciaController.listPersona}" var="p"
+					itemLabel="#{p.nombrePersona}" itemValue="#{p}" />
+			</p:selectOneMenu>
+			
+			<p:outputLabel for="cboDelito" value="Delito" />
+			<p:selectOneMenu id="cboDelito" value="#{denunciaController.denuncia.delito}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{denunciaController.listDelito}" var="d"
+					itemLabel="#{d.descripcion}" itemValue="#{d}" />
+			</p:selectOneMenu>
+			
+			<h:outputLabel for="Lugar" value="Lugar "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="Lugar"
+				styleClass="form-control"
+				value="#{denunciaController.denuncia.direccion}" maxlength="50"
+				required="true" />
+			
+			<p:outputLabel for="cboComisaria" value="Comisaria" />
+			<p:selectOneMenu id="cboComisaria" value="#{denunciaController.denuncia.comisaria}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{denunciaController.listComisaria}" var="c"
+					itemLabel="#{c.nombreComisaria}" itemValue="#{c}" />
+			</p:selectOneMenu>
+			
+			<h:outputLabel for="fecha" value="Fecha "
+					styleClass="control-label" />
+
+				<p:calendar id="fecha" pattern="dd/MM/yyyy"
+					value="#{denunciaController.denuncia.fecha}"
+					showOn="button" timeZone="UTC" required="true"
+					requiredMessage="fecha vacía">
+				</p:calendar>
+				<p:message for="fecha" style="color:green" />
+			
+			<h:outputLabel for="Descripcion" value="Descripcion "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="Descripcion"
+				styleClass="form-control"
+				value="#{denunciaController.denuncia.descripcion}" maxlength="70"
+				required="true" />
+			
+			<br />
+			<p:commandButton value="Aceptar"
+				actionListener="#{denunciaController.insertar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listDenuncia?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listDenuncia?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+		</h:form>
+	</ui:define>
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
