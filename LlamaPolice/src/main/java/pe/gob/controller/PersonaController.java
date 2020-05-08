@@ -32,7 +32,7 @@ public class PersonaController implements Serializable{
 	
 	public String nuevoUsuario() {
 		this.setPersona(new Persona());
-		return "listaPersona.xhtml";
+		return "persona.xhtml";
 	}
 
 	public void insertar() {
