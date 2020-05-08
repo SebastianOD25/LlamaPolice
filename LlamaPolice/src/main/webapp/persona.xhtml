@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registrar Usuarios:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Usuario</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="idPersona" value="Id " styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="DNI"
+				styleClass="form-control" value="#{personaController.persona.idPersona}" minlength="8" maxlength="8"
+				required="true" />
+				
+			<h:outputLabel for="nombrePersona" value="Nombres " styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="nombrePersona"
+				styleClass="form-control"
+				value="#{personaController.persona.nombrePersona}" maxlength="30"
+				required="true" />
+
+			<h:outputLabel for="Edad" value="Edad "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="Edad"
+				styleClass="form-control"
+				value="#{personaController.persona.edad}" maxlength="2"
+				required="true" />
+				
+			<h:outputLabel for="Correo" value="Correo "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="Correo"
+				styleClass="form-control"
+				value="#{personaController.persona.correo}" maxlength="50"
+				required="true" />	
+			<br />
+
+
+			<p:commandButton value="Registrar"
+				actionListener="#{personaController.insertar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listPersona?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listPersona?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
